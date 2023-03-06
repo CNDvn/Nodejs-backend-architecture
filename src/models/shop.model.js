@@ -1,6 +1,6 @@
 'use strict'
 
-const { Schema, Types, model } = require("mongoose")
+const { Schema, model } = require("mongoose")
 
 const DOCUMENT_NAME = 'Shop'
 const COLLECTION_NAME = 'Shops'
@@ -34,8 +34,8 @@ const shopSchema = new Schema({
         default: []
     },
 },{
+    collection: COLLECTION_NAME,
     timestamps: true,
-    collation: COLLECTION_NAME
 }
 )
 

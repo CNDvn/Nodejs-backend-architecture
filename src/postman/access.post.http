@@ -3,10 +3,10 @@
 ### signup
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
+x-api-key: a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
 
 {
     "name":"Shop CNDvn",
     "email":"shipcndvn03@gmail.com",
     "password":"abc123456"
 }
-

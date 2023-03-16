@@ -19,9 +19,13 @@ const keyTokenSchema = new Schema({
         type:String,
         require:true,
     },
-    refreshToken:{
+    refreshTokensUsed:{
         type: Array,
-        default: []
+        default: [] // Những refresh token đã được sử dụng
+    },
+    refreshToken: {
+        type: String,
+        require: true
     }
 },{
     collection: COLLECTION_NAME,

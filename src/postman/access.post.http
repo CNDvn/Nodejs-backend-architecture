@@ -20,3 +20,10 @@ x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af7513
     "email":"shipcndvn01112q7@gmail.com",
     "password":"abc123456"
 }
+
+### logout
+POST {{url_dev}}shop/logout
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64127edae82554472894fcb1
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4MjU1NDQ3Mjg5NGZjYjEiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjc5MDY3MTg1LCJleHAiOjE2NzkyMzk5ODV9.empOovIkiRaEP-3QM9qy4XLMvfpUlk7cvQs5zuYWge0

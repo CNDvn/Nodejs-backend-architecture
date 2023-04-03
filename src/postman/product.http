@@ -21,16 +21,30 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4M
 #     }
 # }
 
+# {
+#     "product_name":"IPhone 14 64G",
+#     "product_description":"New product",
+#     "product_price": 500,
+#     "product_type":"Electronic",
+#     "product_thumb":"product_thumb",
+#     "product_quantity": 5,
+#     "product_attributes": {
+#         "manufacturer":"Apple",
+#         "model": "iPhone 14",
+#         "color":"Gold"
+#     }
+# }
+
 {
-    "product_name":"IPhone 14 64G",
+    "product_name":"Furniture 24",
     "product_description":"New product",
     "product_price": 500,
-    "product_type":"Electronic",
+    "product_type":"Furniture",
     "product_thumb":"product_thumb",
     "product_quantity": 5,
     "product_attributes": {
-        "manufacturer":"Apple",
-        "model": "iPhone 14",
-        "color":"Gold"
+        "brand":"TTF",
+        "size": "15",
+        "material":"Gold"
     }
 }

@@ -5,19 +5,32 @@ POST {{url_dev}}product
 Content-Type: application/json
 x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
 x-client-id:64127edae82554472894fcb1
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4MjU1NDQ3Mjg5NGZjYjEiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjc5NzM3OTkwLCJleHAiOjE2Nzk5MTA3OTB9.CtL0spv_gov_2c1bod2ORZUgQaZRKn5yeFp-WoJ25ug
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4MjU1NDQ3Mjg5NGZjYjEiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjgwNTM5MjU2LCJleHAiOjE2ODA3MTIwNTZ9.uSUZ7yUSJ4cBD3IVDuqEnlbFizPPRMsRN-tBdTSBVaQ
+
+# {
+#     "product_name":"name 1",
+#     "product_thumb":"htt",
+#     "product_description":"hello nam",
+#     "product_price": 50,
+#     "product_quantity": 5,
+#     "product_type":"Clothing",
+#     "product_attributes": {
+#         "brand":"Leven",
+#         "size": "L",
+#         "material":"Denin"
+#     }
+# }
 
 {
-    "product_name":"name 1",
-    "product_thumb":"htt",
-    "product_description":"hello nam",
-    "product_price": 50,
+    "product_name":"IPhone 14 64G",
+    "product_description":"New product",
+    "product_price": 500,
+    "product_type":"Electronic",
+    "product_thumb":"product_thumb",
     "product_quantity": 5,
-    "product_type":"Clothing",
-    "product_shop":"64127edae82554472894fcb1",
     "product_attributes": {
-        "brand":"Leven",
-        "size": "L",
-        "material":"Denin"
+        "manufacturer":"Apple",
+        "model": "iPhone 14",
+        "color":"Gold"
     }
 }

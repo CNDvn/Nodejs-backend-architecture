@@ -4,9 +4,8 @@
 POST {{url_dev}}product
 Content-Type: application/json
 x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
-x-client-id:64127edae82554472894fcb1
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4MjU1NDQ3Mjg5NGZjYjEiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjgwNTM5MjU2LCJleHAiOjE2ODA3MTIwNTZ9.uSUZ7yUSJ4cBD3IVDuqEnlbFizPPRMsRN-tBdTSBVaQ
-
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s
 # {
 #     "product_name":"name 1",
 #     "product_thumb":"htt",
@@ -35,16 +34,66 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEyN2VkYWU4M
 #     }
 # }
 
+# {
+#     "product_name":"Furniture 24",
+#     "product_description":"New product",
+#     "product_price": 500,
+#     "product_type":"Furniture",
+#     "product_thumb":"product_thumb",
+#     "product_quantity": 5,
+#     "product_attributes": {
+#         "brand":"TTF",
+#         "size": "15",
+#         "material":"Gold"
+#     }
+# }
+
 {
-    "product_name":"Furniture 24",
-    "product_description":"New product",
-    "product_price": 500,
-    "product_type":"Furniture",
-    "product_thumb":"product_thumb",
-    "product_quantity": 5,
+    "product_name":"Băng Quấn Bảo Vệ Khuỷu Tay",
+    "product_thumb":"http://",
+    "product_description":"Áo Thun Nam",
+    "product_price": 1234.000,
+    "product_quantity": 23,
+    "product_type":"Clothing",
     "product_attributes": {
         "brand":"TTF",
         "size": "15",
         "material":"Gold"
     }
 }
+
+
+### action published product
+POST {{url_dev}}product/publish/64837d96b973da2252494609
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s
+
+### action unpublished product
+POST {{url_dev}}product/unpublish/64837d96b973da2252494609
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s
+
+### get list Drafts
+GET {{url_dev}}product/drafts/all
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s
+
+### get list Publish
+GET {{url_dev}}product/published/all
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s
+
+### get list search
+GET {{url_dev}}product/search/thun
+Content-Type: application/json
+x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-client-id:64837b6bf0259c87e06b99f0
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODk3LCJleHAiOjE2ODY1MTE2OTd9.eOldA4V_QQZDvxSIMimga8WOBU0Tf8EyaFYdIYwPY2s

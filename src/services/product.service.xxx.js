@@ -7,7 +7,16 @@ const {
   furniture,
 } = require("../models/product.model");
 const { BadRequestError } = require("../core/error.response");
-const { findAllDraftsForShop, publishProductByShop, findAllPublishForShop, unPublishProductByShop, searchProductByUser, findAllProducts, findProduct, updateProductById } = require("../models/repositories/product.repo");
+const {
+  findAllDraftsForShop,
+  publishProductByShop,
+  findAllPublishForShop,
+  unPublishProductByShop,
+  searchProductByUser,
+  findAllProducts,
+  findProduct,
+  updateProductById,
+} = require("../models/repositories/product.repo");
 const { removeUndefinedObject, updateNestedObjectParser } = require("../utils");
 const { insertInventory } = require("../models/repositories/inventory.repo");
 
@@ -37,38 +46,48 @@ class ProductFactory {
   }
 
   // PUT //
-  static async publishProductByShop({product_shop, product_id}){
-    return await publishProductByShop({product_shop, product_id})
+  static async publishProductByShop({ product_shop, product_id }) {
+    return await publishProductByShop({ product_shop, product_id });
   }
-  
-  static async unPublishProductByShop({product_shop, product_id}){
-    return await unPublishProductByShop({product_shop, product_id})
+
+  static async unPublishProductByShop({ product_shop, product_id }) {
+    return await unPublishProductByShop({ product_shop, product_id });
   }
 
   // END PUT //
 
   // query //
-  static async findAllDraftsForShop({product_shop, limit=50, skip=0}){
-    const query = {product_shop, isDraft:true}
-    return await findAllDraftsForShop({query, limit, skip})
+  static async findAllDraftsForShop({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isDraft: true };
+    return await findAllDraftsForShop({ query, limit, skip });
   }
 
-  static async findAllPublishForShop({product_shop, limit=50, skip=0}){
-    const query = {product_shop, isPublished:true}
-    return await findAllPublishForShop({query, limit, skip})
+  static async findAllPublishForShop({ product_shop, limit = 50, skip = 0 }) {
+    const query = { product_shop, isPublished: true };
+    return await findAllPublishForShop({ query, limit, skip });
   }
 
-  static async searchProduct({keySearch}){
-    return await searchProductByUser({keySearch})
+  static async searchProduct({ keySearch }) {
+    return await searchProductByUser({ keySearch });
   }
 
-  static async findAllProducts({limit = 50, sort = 'ctime', page = 1, filter = { isPublished: true}}){
-    return await findAllProducts({limit, sort, page, filter, 
-        select: ['product_name', 'product_price', 'product_thumb']})
+  static async findAllProducts({
+    limit = 50,
+    sort = "ctime",
+    page = 1,
+    filter = { isPublished: true },
+  }) {
+    return await findAllProducts({
+      limit,
+      sort,
+      page,
+      filter,
+      select: ["product_name", "product_price", "product_thumb"],
+    });
   }
-  
-  static async findProduct({product_id}){
-    return await findProduct({product_id, unSelect: ["__v"]})
+
+  static async findProduct({ product_id }) {
+    return await findProduct({ product_id, unSelect: ["__v"] });
   }
 }
 
@@ -97,20 +116,20 @@ class Product {
   // create new product
   async createProduct(product_id) {
     const newProduct = await product.create({ ...this, _id: product_id });
-    if(newProduct){
+    if (newProduct) {
       // add product_stock in inventory collection
       await insertInventory({
         productId: newProduct._id,
         shopId: this.product_shop,
-        stock: this.product_quantity
-      })
+        stock: this.product_quantity,
+      });
     }
-    return newProduct
+    return newProduct;
   }
 
   // update Product
   async updateProduct(productId, bodyUpdate) {
-    return await updateProductById({productId, bodyUpdate, model: product})
+    return await updateProductById({ productId, bodyUpdate, model: product });
   }
 }
 
@@ -129,16 +148,23 @@ class Clothing extends Product {
     return newProduct;
   }
 
-  async updateProduct(productId){
+  async updateProduct(productId) {
     //1. remove attribute has null or undefined
-    const objectParams = removeUndefinedObject(this)
+    const objectParams = removeUndefinedObject(this);
     //2. check xem update ở chỗ nào?
-    if(objectParams.product_attributes){
+    if (objectParams.product_attributes) {
       // update child
-      await updateProductById({productId, bodyUpdate: updateNestedObjectParser(objectParams.product_attributes), model: clothing})
+      await updateProductById({
+        productId,
+        bodyUpdate: updateNestedObjectParser(objectParams.product_attributes),
+        model: clothing,
+      });
     }
-    const updateProduct = await super.updateProduct(productId, updateNestedObjectParser(objectParams))
-    return updateProduct
+    const updateProduct = await super.updateProduct(
+      productId,
+      updateNestedObjectParser(objectParams)
+    );
+    return updateProduct;
   }
 }
 
@@ -158,17 +184,17 @@ class Electronic extends Product {
     return newProduct;
   }
 
-  async updateProduct(productId){
+  async updateProduct(productId) {
     //1. remove attribute has null or undefined
-    const objectParams = this
+    const objectParams = this;
     //2. check xem update ở chỗ nào?
-    if(objectParams.product_attributes){
+    if (objectParams.product_attributes) {
       // update child
-      await updateProduct({productId, objectParams, model: electronic})
+      await updateProduct({ productId, objectParams, model: electronic });
     }
 
-    const updateProduct = await super.updateProduct(productId, objectParams)
-    return updateProduct
+    const updateProduct = await super.updateProduct(productId, objectParams);
+    return updateProduct;
   }
 }
 
@@ -187,17 +213,17 @@ class Furniture extends Product {
     return newProduct;
   }
 
-  async updateProduct(productId){
+  async updateProduct(productId) {
     //1. remove attribute has null or undefined
-    const objectParams = this
+    const objectParams = this;
     //2. check xem update ở chỗ nào?
-    if(objectParams.product_attributes){
+    if (objectParams.product_attributes) {
       // update child
-      await updateProduct({productId, objectParams, model: furniture})
+      await updateProduct({ productId, objectParams, model: furniture });
     }
 
-    const updateProduct = await super.updateProduct(productId, objectParams)
-    return updateProduct
+    const updateProduct = await super.updateProduct(productId, objectParams);
+    return updateProduct;
   }
 }
 

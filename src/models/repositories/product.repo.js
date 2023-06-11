@@ -26,7 +26,7 @@ const searchProductByUser = async ({keySearch}) => {
     return result
 }
 
-const publishProductByShop = async ({product_shop, product_id}) => {
+const  publishProductByShop = async ({product_shop, product_id}) => {
     const foundShop = await product.findOne({
         product_shop: new Types.ObjectId(product_shop),
         _id: new Types.ObjectId(product_id)

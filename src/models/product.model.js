@@ -39,8 +39,8 @@ const productSchema = new Schema(
   }
 );
 
-// createindex for search
-productSchema.index({product_name: 'text', product_description: 'text'})
+// create index for search
+productSchema.index({ product_name: "text", product_description: "text" });
 
 // Document middleware: run before .save() and .create()
 productSchema.pre("save", function (next) {

@@ -4,6 +4,7 @@ const { BadRequestError, NotFoundError } = require("../core/error.response");
 const discount = require("../models/discount.model");
 const {
   findAllDiscountCodesUnSelect,
+  checkDiscountExists,
 } = require("../models/repositories/discount.repo");
 const { findAllProducts } = require("../models/repositories/product.repo");
 const { convertToObjectIdMongodb } = require("../utils");
@@ -84,7 +85,9 @@ class DiscountService {
     return newDiscount;
   }
 
-  static async updateDiscountCode() {}
+  static async updateDiscountCode() {
+    //
+  }
 
   /**
    * Get all discount codes available with products
@@ -131,7 +134,7 @@ class DiscountService {
       products = await findAllProducts({
         filter: {
           _id: { $in: discount_product_ids },
-          usPublished: true,
+          isPublished: true,
         },
         limit: +limit,
         page: +page,
@@ -156,8 +159,128 @@ class DiscountService {
         discount_is_active: true,
       },
       unSelect: ["__v", "discount_shopId"],
+      select: ["discount_code", "discount_name"],
       model: discount,
     });
     return discounts;
   }
+
+  /**
+   * Apply Discount Code
+   * products = [
+   *    {
+   *        productId,
+   *        shopId,
+   *        quantity,
+   *        name,
+   *        price
+   *    },
+   *    {
+   *        productId,
+   *        shopId,
+   *        quantity,
+   *        name,
+   *        price
+   *    },
+   * ]
+   */
+  static async getDisCountAmount({ codeId, userId, shopId, products }) {
+    const foundDiscount = await checkDiscountExists(discount, {
+      discount_code: codeId,
+      discount_shopId: convertToObjectIdMongodb(shopId),
+    });
+
+    if (!foundDiscount) throw new NotFoundError(`discount doesn't exist`);
+
+    const {
+      discount_is_active,
+      discount_max_uses,
+      discount_min_order_value,
+      discount_users_used,
+      discount_start_date,
+      discount_end_date,
+      discount_max_uses_per_user,
+      discount_type,
+      discount_value,
+    } = foundDiscount;
+
+    if (!discount_is_active) throw new NotFoundError(`discount expired!`);
+    if (!discount_max_uses) throw new NotFoundError(`discount expired!`);
+
+    if (
+      new Date() < new Date(discount_start_date) ||
+      new Date() > new Date(discount_end_date)
+    )
+      throw new NotFoundError(`discount code has expired!`);
+
+    //check xem co het gia tri toi thieu hay khong?
+    let totalOrder = 0;
+    if (discount_min_order_value > 0) {
+      totalOrder = products.reduce(
+        (acc, product) => acc + product.quantity * product.price,
+        0
+      );
+
+      if (totalOrder < discount_min_order_value)
+        throw new NotFoundError(
+          `discount requires a minimum order value of ${discount_min_order_value}`
+        );
+    }
+
+    if (discount_max_uses_per_user > 0) {
+      const userDiscount = discount_users_used.find(
+        (user) => user.userId === userId
+      );
+      if (userDiscount) {
+        // ...
+      }
+    }
+
+    // check xem discount nay la fixed_amount
+    const amount =
+      discount_type === "fixed_amount"
+        ? discount_value
+        : totalOrder * (discount_value / 100);
+
+    return {
+      totalOrder,
+      discount: amount,
+      totalPrice: totalOrder - amount,
+    };
+  }
+
+  static async deleteDiscountCode({ shopId, codeId }) {
+    const deleted = await discount.findOneAndDelete({
+      discount_code: codeId,
+      discount_shopId: convertToObjectIdMongodb(shopId),
+    });
+
+    return deleted;
+  }
+
+  /**
+   * Cancel Discount Code
+   */
+  static async cancelDiscountCode({ codeId, shopId, userId }) {
+    const foundDiscount = await checkDiscountExists(discount, {
+      discount_code: codeId,
+      discount_shopId: convertToObjectIdMongodb(shopId),
+    });
+
+    if (!foundDiscount) throw new NotFoundError(`discount doesn't exist`);
+
+    const result = await discount.findOneAndUpdate(foundDiscount._id, {
+      $pull: {
+        discount_users_used: userId,
+      },
+      $inc: {
+        discount_max_uses: 1,
+        discount_uses_count: -1,
+      },
+    });
+
+    return result;
+  }
 }
+
+module.exports = DiscountService;

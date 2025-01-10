@@ -1,7 +1,6 @@
 "use strict";
 
 const express = require("express");
-const productController = require("../../controllers/product.controller");
 const asyncHandler = require("../../helpers/asyncHandler");
 const { authenticationV2 } = require("../../auth/authUtils");
 const discountController = require("../../controllers/discount.controller");

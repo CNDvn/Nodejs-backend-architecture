@@ -1,6 +1,6 @@
 "use strict";
 
-import inventoryController from "../../controllers/inventory.controller";
+const inventoryController = require("../../controllers/inventory.controller");
 
 const express = require("express");
 const asyncHandler = require("../../helpers/asyncHandler");
@@ -9,6 +9,6 @@ const { authenticationV2 } = require("../../auth/authUtils");
 const router = express.Router();
 
 router.use(authenticationV2);
-router.post("/review", asyncHandler(inventoryController.addStockToInventory));
+router.post("", asyncHandler(inventoryController.addStockToInventory));
 
 module.exports = router;

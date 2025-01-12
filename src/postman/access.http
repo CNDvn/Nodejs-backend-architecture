@@ -3,7 +3,7 @@
 ### signup
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-api-key: accb6aa0da55a1c7ac5529dee961b14b2923e1329c2705a73e7b032bf7e2b190c246ed6f72e2884ae533c6b1de73492c563263e72c2ea2e17535fbeb988a8ead
 
 {
     "name":"Shop CNDvn",
@@ -14,7 +14,7 @@ x-api-key: a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751
 ### login
 POST {{url_dev}}shop/login
 Content-Type: application/json
-x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-api-key:accb6aa0da55a1c7ac5529dee961b14b2923e1329c2705a73e7b032bf7e2b190c246ed6f72e2884ae533c6b1de73492c563263e72c2ea2e17535fbeb988a8ead
 
 {
     "email":"shipcndvn01112q7@gmail.com",
@@ -24,13 +24,13 @@ x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af7513
 ### logout
 POST {{url_dev}}shop/logout
 Content-Type: application/json
-x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-api-key:accb6aa0da55a1c7ac5529dee961b14b2923e1329c2705a73e7b032bf7e2b190c246ed6f72e2884ae533c6b1de73492c563263e72c2ea2e17535fbeb988a8ead
 x-client-id:64837b6bf0259c87e06b99f0
 authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4NDcwLCJleHAiOjE2ODY1MTEyNzB9.neKiXhCLs1OLlqsNaCMv8wQhPrv1_rfC0frVDBrWEac
 
 ### handler refresh token
 POST {{url_dev}}shop/handlerRefreshToken
 Content-Type: application/json
-x-api-key:a6f8df364a6c66924d3155097b18e10a552a0f52a9858ede3d788af2c3567a73af751336bfe24c366cc42b1a7750f1def98435e3bbb3e94aa5ecfca9c0e45f1e
+x-api-key:accb6aa0da55a1c7ac5529dee961b14b2923e1329c2705a73e7b032bf7e2b190c246ed6f72e2884ae533c6b1de73492c563263e72c2ea2e17535fbeb988a8ead
 x-client-id:64837b6bf0259c87e06b99f0
 x-rtoken-id:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgzN2I2YmYwMjU5Yzg3ZTA2Yjk5ZjAiLCJlbWFpbCI6InNoaXBjbmR2bjAxMTEycTdAZ21haWwuY29tIiwiaWF0IjoxNjg2MzM4ODE5LCJleHAiOjE2ODY5NDM2MTl9.9eda-EDi-qtqAI5s-6xVbMNIWg2C9NDWtl4UDtqmQOM

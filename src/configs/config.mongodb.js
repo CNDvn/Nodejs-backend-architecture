@@ -33,6 +33,9 @@ const pro = {
     port: process.env.PRO_DB_PORT || 27017,
     name: process.env.PRO_DB_NAME || "shopPRO",
   },
+  discord: {
+    appToken: process.env.PRO_DISCORD_APP_TOKEN || "",
+  },
 };
 
 const config = { dev, pro };

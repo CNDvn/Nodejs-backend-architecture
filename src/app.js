@@ -16,6 +16,11 @@ app.use(
   })
 );
 
+//test pub.sub redis
+require("./tests/inventory.test");
+const productTest = require("./tests/product.test");
+productTest.purchaseProduct("product:001", 10);
+
 // init db
 require("./dbs/init.mongodb");
 // const { checkOverLoad } = require("./helpers/check.connect")

@@ -87,6 +87,7 @@ class ProductFactory {
         "product_price",
         "product_thumb",
         "product_variations",
+        "product_shop",
       ],
     });
   }

@@ -1,0 +1,14 @@
+//create network
+docker network create kafka-network
+
+docker run -d --name kafkaMQ --network kafka-network -p 9092:9092 \
+  -e ALLOW_PLAINTEXT_LISTENER=yes \
+  -e KAFKA_ENABLE_KRAFT=yes \
+  -e KAFKA_CFG_NODE_ID=1 \
+  -e KAFKA_CFG_PROCESS_ROLES=controller,broker \
+  -e KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://:9093 \
+  -e KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
+  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT \
+  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 \
+  -e KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER \
+  bitnami/kafka:latest
